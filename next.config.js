@@ -10,7 +10,7 @@ const ContentSecurityPolicy = `
   script-src 'self' 'unsafe-eval' 'unsafe-inline' giscus.app analytics.umami.is;
   style-src 'self' 'unsafe-inline';
   img-src * blob: data:;
-  media-src *.s3.amazonaws.com;
+  media-src 'self' http://localhost:3000 https://futurewithai.xyz;
   connect-src *;
   font-src 'self';
   frame-src giscus.app
@@ -85,6 +85,15 @@ module.exports = () => {
         {
           source: '/(.*)',
           headers: securityHeaders,
+        },
+      ]
+    },
+    async redirects() {
+      return [
+        {
+          source: '/',
+          destination: '/blog/home',
+          permanent: false,
         },
       ]
     },
