@@ -59,6 +59,10 @@ Our **[Dataset](/blog/dataset)** page explores how to curate diverse, unbiased, 
 Incorporate ethical objectives into the traditional loss function (e.g., cross-entropy loss) to create a new objective function:
 
 $$
+\text{Task Loss} = \sum_{i=1}^{n}{u_i^2} = \sum_{i=1}^{n}{(y_i - \mathbf{x}'_i\beta)^2}
+$$
+
+$$
 \text{Loss} = \text{Task Loss} + \lambda_1 \cdot \text{Ethics Penalty}_1 + \lambda_2 \cdot \text{Ethics Penalty}_2 + \dots
 $$
 
