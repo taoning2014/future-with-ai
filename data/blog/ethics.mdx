@@ -7,7 +7,7 @@ images: ['/static/images/banner-1.jpg']
 ---
 
 > [!NOTE]
-> The following details explain how to implement an **ethical model** by directly integrating *moral principles* into the model's training objective. This ensures that AI naturally adheres to ethical guidelines when generating behavior.
+> The following details explain how to implement an **ethical model** by directly integrating **moral principles** into the model's training objective. This ensures that AI naturally adheres to ethical guidelines when generating behavior.
 
 <TOCInline toc={props.toc} />
 
@@ -21,7 +21,7 @@ The goals of an ethical model are:
 1. Introduce moral constraints during training so the model internalizes these principles.
 2. Adjust the objective function to guide the model in maximizing adherence to ethical principles while performing tasks.
 
-### Key Methods:
+### Key Methods
 - **Multi-objective optimization**: Optimize for both task objectives and ethical goals simultaneously.
 - **Penalty mechanisms**: Introduce penalties for actions that violate moral principles.
 - **Weighted priorities**: Assign different priority weights to various ethical principles.
@@ -160,7 +160,7 @@ for batch in training_dataloader:
 
 ---
 
-## 4. Evaluation and Fine-tuning
+## Evaluation and Fine-tuning
 
 ### (1) Evaluate Ethical Compliance
 
@@ -175,14 +175,6 @@ Based on evaluation results, adjust the weights for ethical constraints:
 
 - Increase $$\lambda$$ if the violation rate is high.
 - Decrease $$\lambda$$ if task performance is significantly degraded.
-
----
-
-## Applicable Scenarios
-
-- **Conversational AI**: Ensure chatbot responses do not contain offensive or misleading content.
-- **Recommendation Systems**: Avoid recommendations based on biased factors like race or gender.
-- **Educational AI**: Generate ethically appropriate educational content, free from cultural or historical biases.
 
 ---
 

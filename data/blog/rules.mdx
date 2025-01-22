@@ -6,16 +6,13 @@ layout: PostSimple
 images: ['/static/images/banner-3.jpg']
 ---
 
-> [!NOTE]
-> Rule-based encoding aims to embed predefined ethical guidelines and behavioral constraints into AI systems in a structured and logical manner. By doing so, AI behavior can be explicitly guided by moral boundaries. Below are the details:
-
 <TOCInline toc={props.toc} />
 
 ## What is Rule-Based Encoding?
 
 Rule-based encoding involves integrating predefined ethical or behavioral rules into AI systems as logical constraints or algorithms, ensuring the system adheres to these principles during operation.  
 
-Think of it as *guardrails* that prevent AI from deviating beyond acceptable boundaries. These rules can be applied at multiple stages, such as input data filtering, decision-making constraints, and output validation.
+Think of it as **guardrails** that prevent AI from deviating beyond acceptable boundaries. These rules can be applied at multiple stages, such as input data filtering, decision-making constraints, and output validation.
 
 ---
 
@@ -29,59 +26,7 @@ There are two options for defining the rules:
 
 **Weighted Prioritization**: Assign different weights to rules to resolve conflicts. Example: [No harm](https://www.health.harvard.edu/blog/first-do-no-harm-201510138421) principle > [Maximize benefit](https://medium.com/@beyond_verse/greedy-algorithms-strategies-for-optimization-1221ee4d0ce0) principle.
 
-### (2) Embed Rules into Key Phases of the Model
-
-**Input Data Validation**
-
-Use Natural Language Understanding (NLU), keyword matching, sentiment analysis, etc to Analyze user input before the model processes it, filtering out harmful content.
-
-```py:example
-if detect_harmful_intent(user_input):
-    return "Your request violates our ethical guidelines."
-```
-
-**Post-Processing Model Outputs**
-
-Use Content classifiers, semantic filters to validate and filter outputs before presenting them to the user.
-
-```py:example
-output = model.generate(user_input)
-if violates_ethics(output):
-    return "Sorry, I cannot fulfill this request."
-else:
-    return output
-```
-
-**Internal Model Constraints**:
-
-Define penalty terms in the training loss function to discourage unethical behavior. Add ethical constraints directly to the model's objective function.
-
----
-
-## Technical Implementation Examples
-
-### (1) Input Data Validation
-
-Using a pre-trained classifier to filter input:
-
-```py:example
-from transformers import pipeline
-
-# Use sentiment analysis to detect harmful intent
-classifier = pipeline("sentiment-analysis")
-user_input = "Some people don't deserve to exist."
-
-# Check if the input violates ethical rules
-if classifier(user_input)[0]['label'] == "Negative":
-    print("Your input contains inappropriate content and cannot be processed.")
-else:
-    # Proceed with the request
-    process_request(user_input)
-```
-
-### (2) Post-Processing Model Outputs
-
-Analyze outputs for ethical violations:
+### (2) Embed Rules into Post-Processing Model Outputs
 
 ```py:example
 # Rule: Do not generate outputs with violent intent
@@ -99,18 +44,7 @@ if violates_ethics(output):
 else:
     print(output)
 ```
-
-### (3) Internal Constraints: Penalized Training
-
-Guide the model to learn ethical constraints during training. Add examples related to ethical constraints during training. Penalty Loss Function:
-```py:example
-def custom_loss_function(predicted, target, ethics_violation):
-    original_loss = cross_entropy(predicted, target)
-    penalty = ethics_violation * penalty_weight
-    return original_loss + penalty
-```
-
-### (4) Resolving Rule Conflicts with Priorities
+### (3) Resolving Rule Conflicts with Priorities
 
 If multiple rules conflict, prioritize based on weights:
 
