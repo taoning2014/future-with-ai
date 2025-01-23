@@ -32,30 +32,14 @@ export default function PostMinimal({ content, next, prev, children }: LayoutPro
             <div className="w-full">
               <Bleed>
                 <figure>
-                  <div
-                    style={{
-                      position: 'relative',
-                      width: '100%',
-                      paddingBottom: '56.25%',
-                      backgroundColor: '#000',
-                      borderRadius: '12px',
-                    }}
-                  >
+                  <div className="relative w-full overflow-hidden rounded-xl bg-black pb-[56.25%]">
                     <video
                       autoPlay
                       muted
                       loop
                       playsInline
                       preload="auto"
-                      style={{
-                        position: 'absolute',
-                        top: 0,
-                        left: 0,
-                        width: '100%',
-                        height: '100%',
-                        objectFit: 'cover',
-                        borderRadius: '12px',
-                      }}
+                      className="absolute inset-0 h-full w-full object-cover"
                     >
                       <source src="/static/videos/banner-1.mp4" type="video/mp4" />
                       Your browser does not support the video tag.
