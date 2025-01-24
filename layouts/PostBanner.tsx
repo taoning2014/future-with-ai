@@ -28,12 +28,12 @@ export default function PostMinimal({ content, next, prev, children }: LayoutPro
       <ScrollTopAndComment />
       <article>
         <div>
-          <div className="space-y-1 pb-10 text-center dark:border-gray-700">
+          <div className="space-y-1 pb-10 text-center">
             <div className="w-full">
               <Bleed>
                 <figure>
                   <div className="relative w-full overflow-hidden rounded-xl pb-[56.25%]">
-                    <div className="absolute inset-0 flex items-center justify-center bg-gray-200">
+                    <div className="absolute inset-0 flex items-center justify-center bg-gray-200 dark:bg-gray-800">
                       <div className="h-10 w-10 animate-spin rounded-full border-4 border-gray-300 border-t-transparent"></div>
                     </div>
                     <video
