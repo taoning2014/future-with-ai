@@ -5,6 +5,7 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import js from '@eslint/js'
 import { FlatCompat } from '@eslint/eslintrc'
+import unusedImports from 'eslint-plugin-unused-imports'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -28,6 +29,7 @@ export default [
   {
     plugins: {
       '@typescript-eslint': typescriptEslint,
+      'unused-imports': unusedImports,
     },
 
     languageOptions: {
@@ -50,7 +52,6 @@ export default [
     rules: {
       'prettier/prettier': 'error',
       'react/react-in-jsx-scope': 'off',
-
       'jsx-a11y/anchor-is-valid': [
         'error',
         {
@@ -65,6 +66,7 @@ export default [
       '@typescript-eslint/explicit-module-boundary-types': 'off',
       '@typescript-eslint/no-var-requires': 'off',
       '@typescript-eslint/ban-ts-comment': 'off',
+      'no-unused-vars': 'warn',
     },
   },
 ]
