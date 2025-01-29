@@ -17,6 +17,7 @@ const NewsletterForm = ({
   apiUrl = '/api/newsletter',
 }: NewsletterFormProps) => {
   const inputEl = useRef<HTMLInputElement>(null)
+  const [isValid, setIsValid] = useState(false)
   const [error, setError] = useState(false)
   const [message, setMessage] = useState('')
   const [subscribed, setSubscribed] = useState(false)
@@ -35,22 +36,17 @@ const NewsletterForm = ({
     setAudio(sound)
   }, [])
 
+  const validateEmail = (email: string) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+  }
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const emailValue = e.target.value
+    setIsValid(validateEmail(emailValue))
+  }
+
   const subscribe = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-
-    // Play sound effect
-    if (audio) {
-      audio.currentTime = 0 // Reset to start for consecutive clicks
-      audio.play()
-    }
-
-    // Fire confetti
-    if (confetti) {
-      confetti({
-        particleCount: 200,
-        spread: 100,
-      })
-    }
 
     const res = await fetch(apiUrl, {
       body: JSON.stringify({
@@ -69,6 +65,20 @@ const NewsletterForm = ({
         'Your e-mail address is invalid or you are already subscribed!'
       )
       return
+    }
+
+    // Play sound effect
+    if (audio) {
+      audio.currentTime = 0 // Reset to start for consecutive clicks
+      audio.play()
+    }
+
+    // Fire confetti
+    if (confetti) {
+      confetti({
+        particleCount: 200,
+        spread: 100,
+      })
     }
 
     inputEl.current!.value = ''
@@ -97,18 +107,22 @@ const NewsletterForm = ({
               required
               type="email"
               disabled={subscribed}
+              onChange={handleChange}
             />
           </label>
         </div>
         <div className="mt-2 flex w-full rounded-md shadow-sm sm:ml-3 sm:mt-0">
           <button
-            className={`w-full rounded-md bg-primary-500 px-4 py-2 font-medium text-white sm:py-0 ${
-              subscribed
-                ? 'cursor-default'
-                : 'hover:bg-primary-700 dark:hover:bg-primary-400'
-            } focus:outline-none focus:ring-2 focus:ring-primary-600 focus:ring-offset-2 dark:ring-offset-black`}
+            className={`w-full rounded-md px-4 py-2 font-medium text-white sm:py-0 
+    ${
+      subscribed
+        ? 'cursor-default bg-gray-400 dark:bg-gray-600'
+        : 'bg-primary-500 hover:bg-primary-700 dark:hover:bg-primary-400'
+    }
+    ${!isValid || subscribed ? 'cursor-not-allowed bg-gray-400 opacity-50' : ''}
+    focus:outline-none focus:ring-2 focus:ring-primary-600 focus:ring-offset-2 dark:ring-offset-black`}
             type="submit"
-            disabled={subscribed}
+            disabled={!isValid || subscribed}
           >
             {subscribed ? 'Thank you!' : 'Sign up'}
           </button>
