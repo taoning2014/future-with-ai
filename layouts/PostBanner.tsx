@@ -7,8 +7,7 @@ import PageTitle from '@/components/PageTitle'
 import SectionContainer from '@/components/SectionContainer'
 import siteMetadata from '@/data/siteMetadata'
 import ScrollTopAndComment from '@/components/ScrollTopAndComment'
-import NewsletterForm from 'pliny/ui/NewsletterForm'
-import LoadCanvasConfetti from '@/components/LoadCanvasConfetti'
+import NewsletterForm from '@/components/NewsletterForm'
 
 interface LayoutProps {
   content: CoreContent<Blog>
@@ -22,7 +21,6 @@ export default function PostMinimal({ content, children }: LayoutProps) {
 
   return (
     <SectionContainer>
-      <LoadCanvasConfetti />
       <ScrollTopAndComment />
       <article>
         <div>
