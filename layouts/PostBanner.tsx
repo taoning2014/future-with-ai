@@ -7,8 +7,7 @@ import PageTitle from '@/components/PageTitle'
 import SectionContainer from '@/components/SectionContainer'
 import siteMetadata from '@/data/siteMetadata'
 import ScrollTopAndComment from '@/components/ScrollTopAndComment'
-import NewsletterForm from 'pliny/ui/NewsletterForm'
-import LoadCanvasConfetti from '@/components/LoadCanvasConfetti'
+import NewsletterForm from '@/components/NewsletterForm'
 
 interface LayoutProps {
   content: CoreContent<Blog>
@@ -22,7 +21,6 @@ export default function PostMinimal({ content, children }: LayoutProps) {
 
   return (
     <SectionContainer>
-      <LoadCanvasConfetti />
       <ScrollTopAndComment />
       <article>
         <div>
@@ -42,7 +40,10 @@ export default function PostMinimal({ content, children }: LayoutProps) {
                       preload="auto"
                       className="absolute inset-0 h-full w-full object-cover"
                     >
-                      <source src="/static/videos/banner-1.mp4" type="video/mp4" />
+                      <source
+                        src="/static/videos/banner-1.mp4"
+                        type="video/mp4"
+                      />
                       Your browser does not support the video tag.
                     </video>
                   </div>
@@ -54,9 +55,14 @@ export default function PostMinimal({ content, children }: LayoutProps) {
               <PageTitle>{title}</PageTitle>
             </div>
           </div>
-          <div className="prose max-w-none py-4 dark:prose-invert">{children}</div>
+          <div className="prose max-w-none py-4 dark:prose-invert">
+            {children}
+          </div>
           {siteMetadata.comments && (
-            <div className="pb-6 pt-6 text-center text-gray-700 dark:text-gray-300" id="comment">
+            <div
+              className="pb-6 pt-6 text-center text-gray-700 dark:text-gray-300"
+              id="comment"
+            >
               <Comments slug={slug} />
             </div>
           )}
