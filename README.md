@@ -8,6 +8,9 @@ You can visit the site at [futurewithAI.xyz](http://futurewithAI.xyz).
 
 The website includes several responsive pages and interactive features such as a newsletter subscription and a discussion forum.
 
+![Apr-08-2025 09-30-57](https://github.com/user-attachments/assets/44ca9b84-5f0f-4102-ad2d-eb748ebf8ab1)
+
+
 ## Quick Start Guide
 
 1. Clone the repo
